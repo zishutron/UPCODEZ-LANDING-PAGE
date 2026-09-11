@@ -176,22 +176,6 @@ button {
   height: 16px;
 }
 
-.nav-mobile-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  align-items: center;
-  justify-content: center;
-  color: var(--deep-teal);
-  background: var(--light-green);
-}
-
-.nav-mobile-toggle svg {
-  width: 20px;
-  height: 20px;
-}
-
 /* ============ HERO ============ */
 .hero {
   position: relative;
@@ -228,10 +212,6 @@ button {
   background:
     linear-gradient(105deg, rgba(252, 253, 249, 0.92) 0%, rgba(228, 242, 228, 0.75) 45%, rgba(211, 236, 211, 0.55) 70%, rgba(154, 210, 183, 0.35) 100%);
   pointer-events: none;
-}
-
-.hero-overlay-mobile {
-  display: none;
 }
 
 .hero-inner {
@@ -1089,7 +1069,6 @@ button {
   .nav { padding: 14px 24px; }
   .nav.scrolled { padding: 12px 24px; }
   .nav-links { display: none; }
-  .nav-mobile-toggle { display: flex; }
   .hero { padding: 110px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; gap: 50px; }
   .hero-content { max-width: 100%; }
@@ -1184,15 +1163,10 @@ button {
       <a href="#preview" class="nav-link">Preview</a>
       <a href="#download" class="nav-link">Download</a>
     </div>
-    <div style="display:flex; align-items:center; gap:10px;">
-      <a href="https://github.com/zishutron/Stardust-store/releases/download/v4.0.1/upcodez.apk" class="nav-cta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
-        <span>Download</span>
-      </a>
-      <button class="nav-mobile-toggle" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
+    <a href="https://github.com/zishutron/Stardust-store/releases/download/v4.0.1/upcodez.apk" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
+      <span>Download</span>
+    </a>
   </div>
 </nav>
 
@@ -1479,8 +1453,8 @@ button {
         <div class="footer-col">
           <h5>Legal</h5>
           <ul>
-            <li><a href="#privacy">Privacy</a></li>
-            <li><a href="#terms">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
           </ul>
         </div>
       </div>
