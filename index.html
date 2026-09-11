@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPCODEZ OTT — Discover. Watch. Enjoy.</title>
+<meta name="description" content="UPCODEZ OTT is a simple and modern streaming app for discovering, exploring and watching video content.">
+<meta property="og:title" content="UPCODEZ OTT — Your Modern Streaming Experience">
+<meta property="og:description" content="Discover, search and watch video content with UPCODEZ OTT.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png">
+<meta name="theme-color" content="#FCFDF9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-mint: #9AD2B7;
+  --soft-mint: #D3ECD3;
+  --light-green: #E4F2E4;
+  --fresh-mint: #9AD2B7;
+  --teal-green: #5D9987;
+  --deep-teal: #408071;
+  --bg: #FCFDF9;
+  --soft-white: #FFFFFF;
+  --text-dark: #1F2D27;
+  --text-mid: #4d635a;
+  --text-muted: #7a8f85;
+  --border: #d9e6dc;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ============ NAVIGATION ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 40px;
+  background: rgba(252, 253, 249, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(252, 253, 249, 0.92);
+  border-bottom-color: var(--border);
+  padding: 12px 40px;
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--deep-teal);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--main-mint), var(--deep-teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-logo span {
+  color: var(--teal-green);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--deep-teal);
+  background: var(--light-green);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--deep-teal);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(64, 128, 113, 0.2);
+}
+
+.nav-cta:hover {
+  background: var(--teal-green);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(64, 128, 113, 0.28);
+}
+
+.nav-cta svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nav-mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  color: var(--deep-teal);
+  background: var(--light-green);
+}
+
+.nav-mobile-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 120px 40px 80px;
+}
+
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video-wrap video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(105deg, rgba(252, 253, 249, 0.92) 0%, rgba(228, 242, 228, 0.75) 45%, rgba(211, 236, 211, 0.55) 70%, rgba(154, 210, 183, 0.35) 100%);
+  pointer-events: none;
+}
+
+.hero-overlay-mobile {
+  display: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.hero-content {
+  max-width: 580px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--deep-teal);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-eyebrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 5.5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--text-dark);
+  margin-bottom: 22px;
+}
+
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--deep-teal), var(--teal-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 500px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  background: var(--deep-teal);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.25s;
+  box-shadow: 0 6px 20px rgba(64, 128, 113, 0.28);
+  letter-spacing: -0.2px;
+}
+
+.btn-primary:hover {
+  background: var(--teal-green);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(64, 128, 113, 0.35);
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--deep-teal);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+  letter-spacing: -0.2px;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  border-color: var(--fresh-mint);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(64, 128, 113, 0.1);
+}
+
+.btn-secondary svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hero-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hero-note svg {
+  width: 15px;
+  height: 15px;
+  color: var(--teal-green);
+}
+
+/* HERO PHONE MOCKUP */
+.hero-phone-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.hero-phone-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154, 210, 183, 0.5) 0%, rgba(154, 210, 183, 0) 70%);
+  z-index: 0;
+  filter: blur(20px);
+}
+
+.phone-mockup {
+  position: relative;
+  z-index: 1;
+  width: 300px;
+  max-width: 100%;
+  border-radius: 40px;
+  background: linear-gradient(155deg, #f4f7f4, #e8efe8);
+  padding: 12px;
+  box-shadow:
+    0 40px 80px -20px rgba(64, 128, 113, 0.35),
+    0 20px 40px -20px rgba(64, 128, 113, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.phone-screen {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.phone-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 22px;
+  background: #1a1a1a;
+  border-radius: 100px;
+  z-index: 3;
+}
+
+.hero-float-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 12px 32px rgba(64, 128, 113, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  z-index: 2;
+}
+
+.hero-float-card svg {
+  width: 20px;
+  height: 20px;
+  color: var(--deep-teal);
+}
+
+.hero-float-1 {
+  top: 12%;
+  left: -8%;
+  animation: floatY 5s ease-in-out infinite 0.5s;
+}
+
+.hero-float-2 {
+  bottom: 18%;
+  right: -6%;
+  animation: floatY 5.5s ease-in-out infinite 1s;
+}
+
+/* ============ SECTIONS COMMON ============ */
+.section {
+  padding: 100px 40px;
+  position: relative;
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+
+.section-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  background: var(--light-green);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--deep-teal);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.section-eyebrow svg {
+  width: 13px;
+  height: 13px;
+}
+
+.section h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+.section-desc {
+  font-size: 16.5px;
+  color: var(--text-mid);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+.section-head.center .section-desc {
+  margin: 0 auto;
+}
+
+/* ============ INTRO SECTION ============ */
+.intro {
+  background: var(--bg);
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.intro-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-visual-bg {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--light-green), var(--soft-mint));
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.intro-phone {
+  position: relative;
+  z-index: 1;
+  width: 260px;
+  border-radius: 34px;
+  background: linear-gradient(155deg, #f4f7f4, #e8efe8);
+  padding: 10px;
+  box-shadow:
+    0 30px 60px -20px rgba(64, 128, 113, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.intro-phone-screen {
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.intro-phone-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ APP EXPERIENCE ============ */
+.experience {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--soft-white) 100%);
+}
+
+.features-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.feature-row.reverse {
+  direction: rtl;
+}
+
+.feature-row.reverse > * {
+  direction: ltr;
+}
+
+.feature-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.feature-visual-bg {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--soft-mint), var(--light-green));
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+}
+
+.feature-phone {
+  position: relative;
+  z-index: 1;
+  width: 250px;
+  border-radius: 32px;
+  background: linear-gradient(155deg, #f4f7f4, #e8efe8);
+  padding: 10px;
+  box-shadow:
+    0 30px 60px -20px rgba(64, 128, 113, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  transition: transform 0.4s ease;
+}
+
+.feature-phone:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+.feature-phone-screen {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.feature-phone-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.feature-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--deep-teal);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.feature-label-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--light-green);
+  color: var(--deep-teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.feature-row h3 {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.feature-row p {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+/* ============ WHY GRID ============ */
+.why {
+  background: var(--soft-white);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.why-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px 26px;
+  transition: all 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--fresh-mint);
+  box-shadow: 0 12px 32px rgba(64, 128, 113, 0.1);
+}
+
+.why-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--deep-teal);
+  margin-bottom: 22px;
+  transition: all 0.3s ease;
+}
+
+.why-card:hover .why-icon {
+  background: var(--deep-teal);
+  color: #fff;
+}
+
+.why-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.why-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.why-card p {
+  font-size: 14.5px;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ============ PREVIEW SECTION ============ */
+.preview {
+  background: linear-gradient(180deg, var(--soft-white) 0%, var(--light-green) 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.preview-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+}
+
+.preview-shape-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--main-mint);
+  top: 10%;
+  left: -100px;
+}
+
+.preview-shape-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--soft-mint);
+  bottom: -100px;
+  right: -120px;
+}
+
+.preview-showcase {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+  margin-top: 40px;
+  perspective: 1400px;
+}
+
+.preview-device {
+  border-radius: 32px;
+  background: linear-gradient(155deg, #f4f7f4, #e8efe8);
+  padding: 10px;
+  box-shadow:
+    0 40px 80px -30px rgba(64, 128, 113, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  transition: transform 0.5s ease;
+}
+
+.preview-device-screen {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.preview-device-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.preview-device-1 {
+  width: 220px;
+  transform: translateY(30px) rotateY(12deg);
+  z-index: 1;
+}
+
+.preview-device-2 {
+  width: 260px;
+  transform: translateY(0);
+  z-index: 3;
+}
+
+.preview-device-3 {
+  width: 220px;
+  transform: translateY(30px) rotateY(-12deg);
+  z-index: 2;
+}
+
+.preview-showcase:hover .preview-device-1 {
+  transform: translateY(20px) rotateY(8deg);
+}
+
+.preview-showcase:hover .preview-device-3 {
+  transform: translateY(20px) rotateY(-8deg);
+}
+
+/* ============ DOWNLOAD CTA ============ */
+.download {
+  background: linear-gradient(135deg, var(--light-green) 0%, var(--soft-mint) 50%, var(--bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.download::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154, 210, 183, 0.5) 0%, rgba(154, 210, 183, 0) 70%);
+  pointer-events: none;
+}
+
+.download-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.download h2 {
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.download p {
+  font-size: 17px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.download-btn-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  background: var(--deep-teal);
+  color: #fff;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  transition: all 0.25s;
+  box-shadow: 0 10px 32px rgba(64, 128, 113, 0.32);
+}
+
+.download-btn:hover {
+  background: var(--teal-green);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(64, 128, 113, 0.42);
+}
+
+.download-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.download-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+
+.download-note svg {
+  width: 15px;
+  height: 15px;
+  color: var(--teal-green);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--soft-white);
+  border-top: 1px solid var(--border);
+  padding: 60px 40px 30px;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-brand {
+  max-width: 340px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--deep-teal);
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.footer-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--main-mint), var(--deep-teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.footer-logo-mark svg {
+  width: 17px;
+  height: 17px;
+}
+
+.footer-tagline {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.footer-col h5 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--deep-teal);
+  margin-bottom: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col a {
+  font-size: 14.5px;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: var(--deep-teal);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.footer-made {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-made svg {
+  width: 14px;
+  height: 14px;
+  color: var(--teal-green);
+}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .nav { padding: 14px 24px; }
+  .nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: flex; }
+  .hero { padding: 110px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .hero-content { max-width: 100%; }
+  .hero-phone-wrap { order: -1; }
+  .hero-phone-glow { width: 340px; height: 340px; }
+  .phone-mockup { width: 260px; }
+  .hero-float-1 { left: 4%; top: 6%; }
+  .hero-float-2 { right: 4%; bottom: 12%; }
+  .section { padding: 80px 24px; }
+  .intro-grid { grid-template-columns: 1fr; gap: 50px; }
+  .feature-row { grid-template-columns: 1fr; gap: 40px; }
+  .feature-row.reverse { direction: ltr; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .preview-showcase { gap: 16px; }
+  .preview-device-1, .preview-device-3 { width: 160px; }
+  .preview-device-2 { width: 200px; }
+}
+
+@media (max-width: 640px) {
+  .nav { padding: 12px 16px; }
+  .nav.scrolled { padding: 10px 16px; }
+  .nav-logo { font-size: 15px; }
+  .nav-logo-mark { width: 30px; height: 30px; }
+  .nav-cta { padding: 9px 16px; font-size: 13px; }
+  .nav-cta span { display: none; }
+
+  .hero { padding: 100px 18px 60px; min-height: auto; }
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(252, 253, 249, 0.95) 0%, rgba(228, 242, 228, 0.85) 60%, rgba(211, 236, 211, 0.75) 100%);
+  }
+  .hero h1 { letter-spacing: -1.2px; }
+  .hero-sub { font-size: 15.5px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
+  .phone-mockup { width: 230px; border-radius: 34px; padding: 10px; }
+  .phone-screen { border-radius: 26px; }
+  .phone-notch { width: 78px; height: 20px; top: 8px; }
+  .hero-float-card { font-size: 12px; padding: 10px 12px; }
+  .hero-float-1 { left: 0; top: 2%; }
+  .hero-float-2 { right: 0; bottom: 6%; }
+  .hero-float-card svg { width: 16px; height: 16px; }
+
+  .section { padding: 64px 18px; }
+  .section-head { margin-bottom: 44px; }
+  .why-grid { grid-template-columns: 1fr; gap: 14px; }
+  .why-card { padding: 26px 22px; }
+
+  .features-stack { gap: 70px; }
+  .feature-phone { width: 220px; }
+  .feature-visual-bg { width: 280px; height: 280px; }
+
+  .intro-phone { width: 220px; }
+  .intro-visual-bg { width: 300px; height: 300px; }
+
+  .preview-showcase {
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .preview-device { border-radius: 22px; padding: 7px; }
+  .preview-device-screen { border-radius: 16px; }
+  .preview-device-1, .preview-device-3 { width: 100px; transform: translateY(20px) rotateY(8deg); }
+  .preview-device-2 { width: 130px; }
+
+  .download-btn { width: 100%; justify-content: center; padding: 16px 24px; font-size: 15px; }
+
+  .footer { padding: 44px 18px 24px; }
+  .footer-links { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+@media (max-width: 380px) {
+  .hero-float-1, .hero-float-2 { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <span class="nav-logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+      </span>
+      UPCODEZ <span>OTT</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#preview" class="nav-link">Preview</a>
+      <a href="#download" class="nav-link">Download</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="https://github.com/zishutron/Stardust-store/releases/download/v4.0.1/upcodez.apk" class="nav-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
+        <span>Download</span>
+      </a>
+      <button class="nav-mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-video-wrap">
+    <video autoplay loop muted playsinline poster="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png">
+      <source src="https://res.cloudinary.com/vnq9eo7a/video/upload/v1789132135/Streaming_platform_background_vi__20260911182016.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.5 5.7 21 8 13.9 2 9.4h7.6z"/></svg>
+        Your Entertainment, Simplified
+      </div>
+      <h1>Discover. <span class="accent">Watch.</span> Enjoy.</h1>
+      <p class="hero-sub">UPCODEZ OTT brings your video experience together in a clean, simple and modern streaming app.</p>
+      <div class="hero-actions">
+        <a href="https://github.com/zishutron/Stardust-store/releases/download/v4.0.1/upcodez.apk" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
+          Download UPCODEZ OTT
+        </a>
+        <a href="#features" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+          Explore the App
+        </a>
+      </div>
+      <div class="hero-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Android APK &nbsp;•&nbsp; Free to download
+      </div>
+    </div>
+
+    <div class="hero-phone-wrap reveal">
+      <div class="hero-phone-glow"></div>
+      <div class="hero-float-card hero-float-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Quick Search
+      </div>
+      <div class="hero-float-card hero-float-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+        Smooth Viewing
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <img src="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png" alt="UPCODEZ OTT home screen showing discover and browse experience" loading="eager">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section intro">
+  <div class="section-inner">
+    <div class="intro-grid">
+      <div class="reveal">
+        <div class="section-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          About UPCODEZ OTT
+        </div>
+        <h2>Entertainment, without the clutter.</h2>
+        <p class="section-desc">UPCODEZ OTT is designed to keep discovering and watching videos simple. Browse available content, search for something specific, explore video details and start watching through a clean and focused streaming experience.</p>
+      </div>
+      <div class="intro-visual reveal">
+        <div class="intro-visual-bg"></div>
+        <div class="intro-phone">
+          <div class="intro-phone-screen">
+            <img src="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png" alt="UPCODEZ OTT main streaming interface" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP EXPERIENCE -->
+<section class="section experience" id="features">
+  <div class="section-inner">
+    <div class="section-head center reveal">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+        App Experience
+      </div>
+      <h2>Built around how you watch</h2>
+      <p class="section-desc">Three simple experiences that make up the UPCODEZ OTT streaming flow.</p>
+    </div>
+
+    <div class="features-stack">
+      <!-- Feature 01 -->
+      <div class="feature-row">
+        <div class="feature-visual reveal">
+          <div class="feature-visual-bg"></div>
+          <div class="feature-phone">
+            <div class="feature-phone-screen">
+              <img src="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png" alt="UPCODEZ OTT discover screen with video grid" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="feature-label">
+            <span class="feature-label-num">01</span>
+            Discover
+          </div>
+          <h3>Discover your next watch</h3>
+          <p>Browse available videos through a clean and focused home experience designed to keep your attention on the content.</p>
+        </div>
+      </div>
+
+      <!-- Feature 02 -->
+      <div class="feature-row reverse">
+        <div class="feature-visual reveal">
+          <div class="feature-visual-bg"></div>
+          <div class="feature-phone">
+            <div class="feature-phone-screen">
+              <img src="https://i.ibb.co/fzkGT9M9/Screenshot-2026-09-11-17-35-46-00.png" alt="UPCODEZ OTT video preview screen with title and description" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="feature-label">
+            <span class="feature-label-num">02</span>
+            Explore Before You Watch
+          </div>
+          <h3>Know what you're watching</h3>
+          <p>Open a video to explore its preview, title and description before starting playback.</p>
+        </div>
+      </div>
+
+      <!-- Feature 03 -->
+      <div class="feature-row">
+        <div class="feature-visual reveal">
+          <div class="feature-visual-bg"></div>
+          <div class="feature-phone">
+            <div class="feature-phone-screen">
+              <img src="https://i.ibb.co/tprbsfBk/Screenshot-2026-09-11-17-36-21-67.png" alt="UPCODEZ OTT search screen with title-based search" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="feature-label">
+            <span class="feature-label-num">03</span>
+            Find It Faster
+          </div>
+          <h3>Search what you want</h3>
+          <p>Find videos quickly with a simple title-based search experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section why">
+  <div class="section-inner">
+    <div class="section-head center reveal">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.5 5.7 21 8 13.9 2 9.4h7.6z"/></svg>
+        Why UPCODEZ OTT
+      </div>
+      <h2>Simple by design</h2>
+      <p class="section-desc">Everything about UPCODEZ OTT is built to make discovering and watching videos straightforward.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h4>Simple Discovery</h4>
+        <p>Find and explore available video content without unnecessary complexity.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h4>Focused Experience</h4>
+        <p>A clean interface built around discovering and watching videos.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg>
+        </div>
+        <h4>Quick Search</h4>
+        <p>Search for content by title and find what you're looking for faster.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <h4>Smooth Viewing</h4>
+        <p>Move from discovering a video to watching it with a simple flow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="section preview" id="preview">
+  <div class="preview-shapes">
+    <div class="preview-shape preview-shape-1"></div>
+    <div class="preview-shape preview-shape-2"></div>
+  </div>
+  <div class="section-inner">
+    <div class="section-head center reveal">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M14 10l7-7M21 14v7H3V3h7"/></svg>
+        App Preview
+      </div>
+      <h2>See UPCODEZ OTT in action</h2>
+      <p class="section-desc">Everything you need to discover, explore and watch video content — presented through a clean and modern interface.</p>
+    </div>
+
+    <div class="preview-showcase reveal">
+      <div class="preview-device preview-device-1">
+        <div class="preview-device-screen">
+          <img src="https://i.ibb.co/tprbsfBk/Screenshot-2026-09-11-17-36-21-67.png" alt="UPCODEZ OTT search experience" loading="lazy">
+        </div>
+      </div>
+      <div class="preview-device preview-device-2">
+        <div class="preview-device-screen">
+          <img src="https://i.ibb.co/vCr8LBmb/Screenshot-2026-09-11-17-34-55-47.png" alt="UPCODEZ OTT main streaming home screen" loading="lazy">
+        </div>
+      </div>
+      <div class="preview-device preview-device-3">
+        <div class="preview-device-screen">
+          <img src="https://i.ibb.co/fzkGT9M9/Screenshot-2026-09-11-17-35-46-00.png" alt="UPCODEZ OTT video preview detail screen" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section download" id="download">
+  <div class="section-inner">
+    <div class="download-inner reveal">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
+        Get the App
+      </div>
+      <h2>Ready to start watching?</h2>
+      <p>Download UPCODEZ OTT and experience a simple, modern way to discover and watch videos.</p>
+      <div class="download-btn-wrap">
+        <a href="https://github.com/zishutron/Stardust-store/releases/download/v4.0.1/upcodez.apk" class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>
+          Download UPCODEZ OTT
+        </a>
+        <div class="download-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Android APK &nbsp;•&nbsp; Free to download
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="footer-logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+          </span>
+          UPCODEZ OTT
+        </div>
+        <p class="footer-tagline">Simple streaming. Better discovery.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#terms">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 UPCODEZ OTT. All rights reserved.</div>
+      <div class="footer-made">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg>
+        Built for a better streaming experience
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+revealEls.forEach((el) => revealObserver.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const targetId = link.getAttribute('href');
+    if (targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
